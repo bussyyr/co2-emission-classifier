@@ -70,6 +70,19 @@ Final model evaluation on the test set:
 **Macro Average F1 Score:** 0.97  
 **Weighted Average F1 Score:** 0.97
 
+## Visualizations
+
+### Confusion Matrix  
+Shows the classification results across the three emission classes:
+
+![Confusion Matrix](confusion_matrix.png)
+
+### Validation Loss Over Epochs  
+Shows how the validation loss changed during training (with early stopping applied):
+
+![Validation Loss vs Epochs](validation_loss_vs_epochs.png)
+
+
 ## Dataset Source
 
 The dataset used in this project is the **CO₂ Emission by Vehicles** dataset published on Kaggle.
