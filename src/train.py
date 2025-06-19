@@ -31,8 +31,8 @@ nn = NeuralNetwork(input_size, hidden_size1, hidden_size2, hidden_size3, output_
                    learning_rate=0.01, class_weights=class_weights)
 
 # Kaydedilmiş model varsa yükle
-if os.path.exists("model_weights.npz"):
-    weights = np.load("model_weights.npz")
+if os.path.exists("best_model.npz"):
+    weights = np.load("best_model.npz")
     nn.W1 = weights["W1"]
     nn.b1 = weights["b1"]
     nn.W2 = weights["W2"]
@@ -112,13 +112,13 @@ test_acc = np.mean(y_test_pred == y_test)
 print(f"\nTest Accuracy: {test_acc:.4f}")
 print(classification_report(y_test, y_test_pred, target_names=["Low", "Medium", "High"]))
 
-# 5. Modeli kaydet
-np.savez("model_weights.npz",
-         W1=nn.W1, b1=nn.b1,
-         W2=nn.W2, b2=nn.b2,
-         W3=nn.W3, b3=nn.b3,
-         W4=nn.W4, b4=nn.b4)
-print("Model kaydedildi.")
+# Early stopping sonunda:
+np.savez("best_model.npz",
+         W1=best_weights['W1'], b1=best_weights['b1'],
+         W2=best_weights['W2'], b2=best_weights['b2'],
+         W3=best_weights['W3'], b3=best_weights['b3'],
+         W4=best_weights['W4'], b4=best_weights['b4'])
+
 
 # Confusion matrix'i görselleştir
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
